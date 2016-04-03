@@ -17,32 +17,34 @@ ActiveRecord::Schema.define(version: 20160403184458) do
   enable_extension "plpgsql"
 
   create_table "contracts", force: :cascade do |t|
-    t.integer  "person_id"
-    t.integer  "post_id"
-    t.float    "salary"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "person_id",                null: false
+    t.integer  "post_id",                  null: false
+    t.float    "salary",     default: 0.0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "contracts", ["person_id"], name: "index_contracts_on_person_id", using: :btree
   add_index "contracts", ["post_id"], name: "index_contracts_on_post_id", using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.string   "last_name"
-    t.string   "first_name"
+    t.string   "last_name",             null: false
+    t.string   "first_name",            null: false
     t.string   "second_name"
-    t.date     "birthday"
-    t.string   "sex"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.date     "birthday",              null: false
+    t.string   "sex",         limit: 1, null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "name"
-    t.string   "full_name"
+    t.string   "name",       null: false
+    t.string   "full_name",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "posts", ["full_name"], name: "index_posts_on_full_name", unique: true, using: :btree
 
   add_foreign_key "contracts", "people"
   add_foreign_key "contracts", "posts"
