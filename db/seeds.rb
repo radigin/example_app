@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+p = Person.create(last_name: 'Пупкин', first_name: 'Василий', second_name: 'Алексеевич', birthday: Date.new(1990, 10, 10), sex: 'м')
+s = Post.create(name: 'Директор', full_name: 'Директор по маркетингу')
+c = Contract.create(person: p, post: s, salary: 100.0)
+
