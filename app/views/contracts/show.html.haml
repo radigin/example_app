@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @contract.person
+%p
+  %b Post:
+  = @contract.post
+%p
+  %b Salary:
+  = @contract.salary
+
+= link_to 'Edit', edit_contract_path(@contract)
+\|
+= link_to 'Back', contracts_path
