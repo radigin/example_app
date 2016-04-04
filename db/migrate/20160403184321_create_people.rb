@@ -10,10 +10,12 @@ class CreatePeople < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+=begin
     reversible do |dir|
       dir.up do
         execute("ALTER TABLE people ADD CONSTRAINT sex_ck CHECK(sex IN('м', 'ж'))")
       end
     end
+=end
   end
 end
