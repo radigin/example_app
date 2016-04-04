@@ -1,6 +1,10 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
+  def statistics
+    @info = Person.year_statistics()
+  end
+
   # GET /people
   # GET /people.json
   def index

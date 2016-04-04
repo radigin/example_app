@@ -6,4 +6,8 @@ class Person < ActiveRecord::Base
   validates :first_name, presence: true
   validates :birthday, presence: true
   validates :sex, inclusion: {in: ['м', 'ж'], allow_blank: false} 
+  
+  def Person.year_statistics
+    Person.group("strftime('%Y', birthday)").order("strftime('%Y', birthday)").pluck("strftime('%Y', birthday), count(*)")
+  end
 end

@@ -1,0 +1,9 @@
+%h1
+  Статистика по годам
+%ul
+  - @info.each do |line|
+    %li
+      %b
+        = line[0]
+      —
+      = line[1]
