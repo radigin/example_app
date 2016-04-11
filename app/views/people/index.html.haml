@@ -1,28 +1,39 @@
 %h1 Listing people
 
-%table
-  %thead
-    %tr
-      %th Last name
-      %th First name
-      %th Second name
-      %th Birthday
-      %th Sex
-      %th
-      %th
-      %th
+= form_tag(people_path, method: :get) do
 
-  %tbody
-    - @people.each do |person|
+  %table
+    %thead
       %tr
-        %td= person.last_name
-        %td= person.first_name
-        %td= person.second_name
-        %td= person.birthday
-        %td= person.sex
-        %td= link_to 'Show', person
-        %td= link_to 'Edit', edit_person_path(person)
-        %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td{colspan: 7}
+          = link_to('Увеличить всем зарплату на 5%',
+          add_five_percent_contracts_path, remote: true)
+      %tr
+        %th{colspan: 5}
+          = text_field_tag('name', params['name'])
+        %th{colspan: 3}
+          = submit_tag('Искать')
+      %tr
+        %th Last name
+        %th First name
+        %th Second name
+        %th Birthday
+        %th Sex
+        %th
+        %th
+        %th
+
+    %tbody
+      - @people.each do |person|
+        %tr
+          %td= person.last_name
+          %td= person.first_name
+          %td= person.second_name
+          %td= person.birthday
+          %td= person.sex
+          %td= link_to 'Show', person
+          %td= link_to 'Edit', edit_person_path(person)
+          %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

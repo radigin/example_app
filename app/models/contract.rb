@@ -7,4 +7,8 @@ class Contract < ActiveRecord::Base
   validates :person_id, presence: true
   validates :post_id, presence: true
   validates :salary, numericality: {allow_nil: false}
+
+  def Contract.add_five_percent()
+    Contract.update_all("salary = salary * 105 / 100")
+  end
 end

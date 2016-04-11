@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :contracts
+  resources :contracts do
+    collection do
+      get :mass_destruction
+      post :mass_destruction_commit
+      get :add_five_percent
+    end
+  end
   resources :posts
   resources :people do
     collection do

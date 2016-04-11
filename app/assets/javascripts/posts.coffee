@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+@copy_name = ->
+  str = document.getElementById('post_full_name').value
+  str = str.substr(0, 16)
+  document.getElementById('post_name').value = str
+  

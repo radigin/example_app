@@ -1,6 +1,20 @@
 class ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
 
+  def add_five_percent
+    Contract.add_five_percent()
+    render(nothing: true)
+  end
+
+  def mass_destruction
+    @contracts = Contract.all
+  end
+
+  def mass_destruction_commit
+    Contract.where(id: params['contract']).destroy_all
+    redirect_to contracts_url, notice: 'Сотрудники уволены!'
+  end
+
   # GET /contracts
   # GET /contracts.json
   def index

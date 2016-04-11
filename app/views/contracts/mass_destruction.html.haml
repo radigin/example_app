@@ -1,0 +1,25 @@
+%h1 Увольнение нескольких людей
+
+= form_tag(mass_destruction_commit_contracts_path) do
+
+  %table
+    %thead
+      %tr
+        %th Ф.И.О. 
+        %th Должность 
+        %th Заработная плата
+        %th Выбор
+    %tbody
+      %tr
+        %td{colspan: 4, style: "text-align: right;"}
+          = submit_tag('Уволить выбранных')
+      - @contracts.each do |contract|
+        %tr
+          %td
+            = contract.person.last_name
+            = contract.person.first_name           
+            = contract.person.second_name
+          %td= contract.post.name
+          %td= contract.salary
+          %td
+            = check_box_tag("contract[]", contract.id, false)            

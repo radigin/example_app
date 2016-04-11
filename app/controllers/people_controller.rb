@@ -8,7 +8,11 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    if params.has_key?('name')
+      @people = Person.where("last_name ilike ?", '%' + params['name'].to_s + '%').all
+    else
+      @people = Person.all
+    end
   end
 
   # GET /people/1
