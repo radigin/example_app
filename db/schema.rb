@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160403184458) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contracts", force: :cascade do |t|
     t.integer  "person_id",                null: false
     t.integer  "post_id",                  null: false
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160403184458) do
     t.datetime "updated_at",               null: false
   end
 
-  add_index "contracts", ["person_id"], name: "index_contracts_on_person_id"
-  add_index "contracts", ["post_id"], name: "index_contracts_on_post_id"
+  add_index "contracts", ["person_id"], name: "index_contracts_on_person_id", using: :btree
+  add_index "contracts", ["post_id"], name: "index_contracts_on_post_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "last_name",             null: false
@@ -41,6 +44,8 @@ ActiveRecord::Schema.define(version: 20160403184458) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts", ["full_name"], name: "index_posts_on_full_name", unique: true
+  add_index "posts", ["full_name"], name: "index_posts_on_full_name", unique: true, using: :btree
 
+  add_foreign_key "contracts", "people"
+  add_foreign_key "contracts", "posts"
 end
