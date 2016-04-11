@@ -8,6 +8,9 @@ class Person < ActiveRecord::Base
   validates :sex, inclusion: {in: ['м', 'ж'], allow_blank: false} 
   
   def Person.year_statistics
-    Person.group("strftime('%Y', birthday)").order("strftime('%Y', birthday)").pluck("strftime('%Y', birthday), count(*)")
+    Person.group('extract(year from birthday)').order(
+      'extract(year from birthday)').pluck(
+      'extract(year from birthday)::integer AS year, count(*) AS count')
+    # Person.group("strftime('%Y', birthday)").order("strftime('%Y', birthday)").pluck("strftime('%Y', birthday), count(*)")
   end
 end
