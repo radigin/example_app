@@ -6,16 +6,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-p = Person.create(last_name: 'Пупкин', first_name: 'Василий', second_name: 'Алексеевич', birthday: Date.new(1990, 10, 10), sex: 'м')
-s = Post.create(name: 'Директор', full_name: 'Директор по маркетингу')
-c = Contract.create(person: p, post: s, salary: 400.0)
-p = Person.create(last_name: 'Пупкина', first_name: 'Василиса', second_name: 'Алексеевна', birthday: Date.new(1990, 10, 10), sex: 'ж')
-s = Post.create(name: 'Глав. бух.', full_name: 'Главный бухгалтер')
-c = Contract.create(person: p, post: s, salary: 300.0)
-p = Person.create(last_name: 'Пупкинский', first_name: 'Василий', second_name: 'Алексеевич', birthday: Date.new(1990, 10, 10), sex: 'м')
-s = Post.create(name: 'Программист', full_name: 'Программист')
-c = Contract.create(person: p, post: s, salary: 150.0)
-p = Person.create(last_name: 'Пупко', first_name: 'Василиса', second_name: 'Алексеевна', birthday: Date.new(1990, 10, 10), sex: 'ж')
-s = Post.create(name: 'Уборщица', full_name: 'Уборщица')
-c = Contract.create(person: p, post: s, salary: 30.0)
+posts = Post.create([{name: 'Директор', full_name: 'Директор по маркетингу'}, {name: 'Глав. бух.', full_name: 'Главный бухгалтер'},
+  {name: 'Программист', full_name: 'Программист'}, {name: 'Уборщица', full_name: 'Уборщица'}])
+lns = {'м' => ['Пупкин', 'Пупкинский', 'Пупко', 'Пупков', 'Пупковский', 'Пупкинян', 'Пупкинидзе'], 'ж' => ['Пупкина', 'Пупкинская', 'Пупко', 'Пупкова', 'Пупковская', 'Пупкинян', 'Пупкинидзе']}
+fns = {'м' => ['Иван', 'Василий', 'Пётр', 'Николай', 'Алексей', 'Андрей', 'Степан'], 'ж' => ['Анна', 'Анастасия', 'Александра', 'Мария', 'Виктория', 'Галина', 'Яна']}
+sns = {'м' => ['Иванович', 'Васильевич', 'Петрович', 'Николаевич', 'Алексеевич', 'Андреевич', 'Степанович'], 'ж' => ['Ивановна', 'Васильевна', 'Петровна', 'Николаевна', 'Алексеевна', 'Андреевна', 'Степановна']}
+sexes = ['м', 'ж']
+
+for i in 0 ... 100
+  sex = sexes[rand(2)]
+  ln = lns[sex][rand(lns[sex].size)]
+  fn = fns[sex][rand(fns[sex].size)]
+  sn = sns[sex][rand(sns[sex].size)]
+  bd = Date.new(1980 + rand(18), 1 + rand(12), 1 + rand(28))
+  p = Person.create(last_name: ln, first_name: fn, second_name: sn, birthday: bd, sex: sex)
+  c = Contract.create(person: p, post: posts[rand(posts.size)], salary: 30 + rand(370))
+end
 
