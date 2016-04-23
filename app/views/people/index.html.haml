@@ -1,17 +1,17 @@
 %h1 Listing people
 
 = form_tag(people_path, method: :get) do
-
+  
   %table
     %thead
       %tr
-        %td{colspan: 7}
+        %td{colspan: 9}
           = link_to('Увеличить всем зарплату на 5%',
           add_five_percent_contracts_path, remote: true)
       %tr
         %th{colspan: 5}
           = text_field_tag('name', params['name'])
-        %th{colspan: 3}
+        %th{colspan: 4}
           = submit_tag('Искать')
       %tr
         %th Last name
@@ -19,9 +19,12 @@
         %th Second name
         %th Birthday
         %th Sex
+        -#%th Posts
+        -#%th Salaries
         %th
         %th
         %th
+        %th Cheked
 
     %tbody
       - @people.each do |person|
@@ -34,6 +37,7 @@
           %td= link_to 'Show', person
           %td= link_to 'Edit', edit_person_path(person)
           %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= link_to(russify_boolean(person.checked), checked_person_path(person), remote: true, id: "checked#{person.id}")
 
 %br
 

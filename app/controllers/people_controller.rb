@@ -1,5 +1,14 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :checked]
+
+  def checked
+    respond_to do |format|
+      format.js do
+        @person.checked = !@person.checked
+        @person.save
+      end
+    end
+  end
 
   def statistics
     @info = Person.year_statistics()
@@ -77,6 +86,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:last_name, :first_name, :second_name, :birthday, :sex)
+      params.require(:person).permit(:last_name, :first_name, :second_name, :birthday, :sex, {contracts_attributes: [:id, :person_id, :post_id, :salary, :_destroy]})
     end
 end

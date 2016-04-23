@@ -1,5 +1,5 @@
 class Contract < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :person, inverse_of: :contracts
   belongs_to :post
 
   validates :person, presence: true

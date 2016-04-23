@@ -21,5 +21,15 @@
   .field
     = f.label :sex
     = f.text_field :sex
+  = f.fields_for :contracts do |cf|
+    = cf.hidden_field :id  
+    = cf.hidden_field :person_id
+    .field
+      = cf.label :post_id
+      = cf.select :post_id, post_options(cf.object.post_id)
+    .field
+      = cf.label :salary
+      = cf.number_field :salary      
+      
   .actions
     = f.submit 'Save'

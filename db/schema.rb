@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403184458) do
+ActiveRecord::Schema.define(version: 20160415151034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,14 @@ ActiveRecord::Schema.define(version: 20160403184458) do
   add_index "contracts", ["post_id"], name: "index_contracts_on_post_id", using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.string   "last_name",             null: false
-    t.string   "first_name",            null: false
+    t.string   "last_name",                             null: false
+    t.string   "first_name",                            null: false
     t.string   "second_name"
-    t.date     "birthday",              null: false
-    t.string   "sex",         limit: 1, null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.date     "birthday",                              null: false
+    t.string   "sex",         limit: 1,                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "checked",               default: false
   end
 
   create_table "posts", force: :cascade do |t|
