@@ -19,8 +19,8 @@
         %th Second name
         %th Birthday
         %th Sex
-        -#%th Posts
-        -#%th Salaries
+        %th Posts
+        %th Salaries
         %th
         %th
         %th
@@ -34,6 +34,8 @@
           %td= person.second_name
           %td= person.birthday
           %td= person.sex
+          %td= person.contracts.map{ |c| c.post.name }.join(', ')
+          %td= person.contracts.map{ |c| c.salary }.join(', ')
           %td= link_to 'Show', person
           %td= link_to 'Edit', edit_person_path(person)
           %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }

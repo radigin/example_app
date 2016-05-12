@@ -18,9 +18,10 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     if params.has_key?('name')
-      @people = Person.where("last_name ilike ?", '%' + params['name'].to_s + '%').all
+      @people = Person.includes(
+        contracts: :post).where("last_name ilike ?", '%' + params['name'].to_s + '%').all
     else
-      @people = Person.all
+      @people = Person.includes(contracts: :post).all
     end
   end
 
