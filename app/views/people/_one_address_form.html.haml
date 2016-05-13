@@ -1,0 +1,39 @@
+.address
+  Адрес
+  .field
+    = fa.label :index
+    = fa.text_field :index
+  .field
+    = fa.label :region
+    = fa.text_field :region
+  .field
+    = fa.label :district
+    = fa.text_field :district
+  .field
+    = fa.label :city
+    = fa.text_field :city
+  .field
+    = fa.label :settlement
+    = fa.text_field :settlement
+  .field
+    = fa.label :street
+    = fa.text_field :street
+  .field
+    = fa.label :house
+    = fa.text_field :house
+  .field
+    = fa.label :building
+    = fa.text_field :building
+  .field
+    = fa.label :construction
+    = fa.text_field :construction
+  .field
+    = fa.label :flat
+    = fa.text_field :flat
+  .field
+    = fa.label :atype
+    = fa.number_field :atype
+  .field
+    = fa.hidden_field(:_destroy, class: :remove_fields)
+    = link_to('Удалить адрес', '#', class: :remove_fields)
+

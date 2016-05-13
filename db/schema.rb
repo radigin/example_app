@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415151034) do
+ActiveRecord::Schema.define(version: 20160513092613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "person_id",              null: false
+    t.string   "index",        limit: 6, null: false
+    t.string   "region",                 null: false
+    t.string   "district"
+    t.string   "city"
+    t.string   "settlement"
+    t.string   "street"
+    t.string   "house"
+    t.string   "building"
+    t.string   "construction"
+    t.string   "flat"
+    t.integer  "atype",                  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "addresses", ["person_id"], name: "index_addresses_on_person_id", using: :btree
 
   create_table "contracts", force: :cascade do |t|
     t.integer  "person_id",                null: false
@@ -47,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160415151034) do
 
   add_index "posts", ["full_name"], name: "index_posts_on_full_name", unique: true, using: :btree
 
+  add_foreign_key "addresses", "people"
   add_foreign_key "contracts", "people"
   add_foreign_key "contracts", "posts"
 end

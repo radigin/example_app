@@ -21,5 +21,8 @@
   .field
     = f.label :sex
     = f.text_field :sex
+  = link_to('Новый адрес', '#', class: :add_address, data: {content: "#{f.fields_for(:addresses, Address.new, child_index: :new_address){|fa| render('people/one_address_form', fa: fa)}}"})
+  = f.fields_for :addresses do |fa|
+    = render('people/one_address_form', fa: fa)
   .actions
     = f.submit 'Save'

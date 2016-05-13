@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :addresses
   resources :contracts do
     collection do
       get :mass_destruction

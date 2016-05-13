@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  person_id: 
+  index: MyString
+  region: MyString
+  district: MyString
+  city: MyString
+  settlement: MyString
+  street: MyString
+  house: MyString
+  building: MyString
+  construction: MyString
+  flat: MyString
+  atype: 1
+
+two:
+  person_id: 
+  index: MyString
+  region: MyString
+  district: MyString
+  city: MyString
+  settlement: MyString
+  street: MyString
+  house: MyString
+  building: MyString
+  construction: MyString
+  flat: MyString
+  atype: 1

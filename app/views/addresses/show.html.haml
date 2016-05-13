@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @address.person
+%p
+  %b Index:
+  = @address.index
+%p
+  %b Region:
+  = @address.region
+%p
+  %b District:
+  = @address.district
+%p
+  %b City:
+  = @address.city
+%p
+  %b Settlement:
+  = @address.settlement
+%p
+  %b Street:
+  = @address.street
+%p
+  %b House:
+  = @address.house
+%p
+  %b Building:
+  = @address.building
+%p
+  %b Construction:
+  = @address.construction
+%p
+  %b Flat:
+  = @address.flat
+%p
+  %b Atype:
+  = @address.atype
+
+= link_to 'Edit', edit_address_path(@address)
+\|
+= link_to 'Back', addresses_path
