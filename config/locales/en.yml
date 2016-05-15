@@ -20,4 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    sure: Are you sure?
+    submit:
+      create: Save
+      submit: Submit
+      update: Update
+    listing: Listing  
+    show: Show
+    edit: Edit
+    destroy: Destroy
+    search: Search
+    new: New
+  activerecord:
+    models:
+      person:
+        one: Person
+        other: People
+

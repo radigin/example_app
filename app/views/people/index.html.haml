@@ -1,4 +1,7 @@
-%h1 Listing people
+%h1
+  =t('helpers.listing')
+  \:
+  =Person.model_name.human(count: 2)
 
 = form_tag(people_path, method: :get) do
   
@@ -12,19 +15,19 @@
         %th{colspan: 5}
           = text_field_tag('name', params['name'])
         %th{colspan: 4}
-          = submit_tag('Искать')
+          = submit_tag(t('helpers.search'))
       %tr
-        %th Last name
-        %th First name
-        %th Second name
-        %th Birthday
-        %th Sex
-        %th Posts
-        %th Salaries
+        %th= Person.human_attribute_name(:last_name)
+        %th= Person.human_attribute_name(:first_name)
+        %th= Person.human_attribute_name(:second_name)
+        %th= Person.human_attribute_name(:birthday)
+        %th= Person.human_attribute_name(:sex)
+        %th= Person.human_attribute_name(:posts)
+        %th= Person.human_attribute_name(:salaries)
         %th
         %th
         %th
-        %th Cheked
+        %th= Person.human_attribute_name(:checked)
 
     %tbody
       - @people.each do |person|
@@ -36,11 +39,11 @@
           %td= person.sex
           %td= person.contracts.map{ |c| c.post.name }.join(', ')
           %td= person.contracts.map{ |c| c.salary }.join(', ')
-          %td= link_to 'Show', person
-          %td= link_to 'Edit', edit_person_path(person)
-          %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= link_to t('helpers.show'), person
+          %td= link_to t('helpers.edit'), edit_person_path(person)
+          %td= link_to t('helpers.destroy'), person, :method => :delete, :data => { :confirm => t('helpers.sure') }
           %td= link_to(russify_boolean(person.checked), checked_person_path(person), remote: true, id: "checked#{person.id}")
 
 %br
 
-= link_to 'New Person', new_person_path
+= link_to t('helpers.new') + ' ' + Person.model_name.human(count: 1), new_person_path

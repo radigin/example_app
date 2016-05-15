@@ -10,7 +10,7 @@
     content = $(this).attr('data-content')
     content = content.replace(regexp, new_id)   
     $(this).after(content)
-    window.delete_address_f
+    window.delete_address_f()
     false  
 $(document).ready window.delete_address_f
 $(document).on 'page:load', window.delete_address_f
